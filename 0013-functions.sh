@@ -8,7 +8,7 @@ if [ $USERID -ne 0 ]; then
 
 fi
 
-VALIDATE() { $ functions receive inputs through args just like shell script args
+VALIDATE() { # functions receive inputs through args just like shell script args
     if [ $1 -ne 0 ]; then
         echo "ERROR:: Installing $2 is failure"
         exit 1
