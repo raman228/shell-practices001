@@ -52,7 +52,7 @@ if [ $? -ne 0 ]; then
     dnf install python3 -y &>>LOG_FILE
     VALIDATE $? "python3"
 else
-     echo -e "python3 already exist... $Y SKIPPING $N" | tee -a $LOG_FILE
+     echo -e "python3" already exist... $Y SKIPPING $N" | tee -a $LOG_FILE
 
 fi
 
