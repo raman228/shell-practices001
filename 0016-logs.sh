@@ -13,7 +13,7 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" #/var/log/shell-script/16-logs.log
 mkdir -p $LOGS_FOLDER
 echo "script started executed at: $(date)"  | tee -a $LOG_FILE
 
-if [ $USERID -ne 0 ];
+if [ $USERID -ne 0 ]; then
      echo "ERROR:: Please run script with root privelege"
      exit 1 # failure other than 0
 
@@ -31,7 +31,7 @@ VALIDATE(){ # functions receive inputs through args just like shell script args
 dnf list installed mysql &>>LOG_FILE
 # install if it is not found
 
-if [ $? -ne 0]; then
+if [ $? -ne 0 ]; then
      dnf install mysql -y &>>LOG_FILE
      VALIDATE $? "MYSQL"
 else
@@ -40,11 +40,11 @@ else
 fi
 
 dnf list installed nginx &>>LOG_FILE
-if [ $? -ne 0 ]then
-     dnf install mysql -y &>>LOG_FILE
+if [ $? -ne 0 ]; then
+     dnf install nginx -y &>>LOG_FILE
      VALIDATE $? "NGINX"
 else
-     echo -e "nginx" already exist ... $Y SKIPPING $N" | tee -a $LOG_FILE
+     echo -e "nginx  already exist ... $Y SKIPPING $N" | tee -a $LOG_FILE
 fi
 
 dnf list installed python3 &>>LOG_FILE
@@ -52,7 +52,8 @@ if [ $? -ne 0 ]; then
     dnf install python3 -y &>>LOG_FILE
     VALIDATE $? "python3"
 else
-     echo -e "python3" already exist... $Y SKIPPING $N" | tee -a $LOG_FILE
+     echo -e "python3 already exist... $Y SKIPPING $N" | tee -a $LOG_FILE
 
 fi
+
 
